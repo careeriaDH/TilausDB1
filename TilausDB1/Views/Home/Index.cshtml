@@ -1,0 +1,95 @@
+﻿@model  TilausDB1.Models.Logins
+
+@{
+    ViewBag.Title = "Home Page";
+}
+@section scripts {
+    <script type="text/javascript">
+    $(window).on('load', function () {
+        if (@ViewBag.LoginError == 1) {
+            $('#LoginRuutu').modal('show');
+        }
+    });
+    </script>
+}
+
+@*Modal tyyppusen ikkunan avauspainike*@
+<button type="button" class="btn btn-primary" data-toggle="modal" data-target="#LoginRuutu">Kirjaudu</button>
+@*Modal ikkuna*@
+<div class="modal" id="LoginRuutu">
+    <div class="modal-dialog">
+        <div class="modal-content">
+            <div class="modal-header">
+                <h1>Kirjautuminen Tee Kakkuja sivulle</h1>
+            </div>
+            <div class="modal-body">
+                @using (Html.BeginForm("Authorize", "Home", FormMethod.Post, new { id = "loginForm" }))
+                {
+                    @Html.AntiForgeryToken()
+                    <div class="form-horizontal">
+                        <h4>Logins</h4>
+                        <hr />
+                        @Html.ValidationSummary(true, "", new { @class = "text-danger" })
+                        @Html.HiddenFor(model => model.LoginId)
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Username, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Username, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Username, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <div class="form-group">
+                            @Html.LabelFor(model => model.Password, htmlAttributes: new { @class = "control-label col-md-2" })
+                            <div class="col-md-10">
+                                @Html.EditorFor(model => model.Password, new { htmlAttributes = new { @class = "form-control" } })
+                                @Html.ValidationMessageFor(model => model.Password, "", new { @class = "text-danger" })
+                            </div>
+                        </div>
+                        <label class="text-danger">
+                            @Html.DisplayFor(model => model.LoginErrorMessage)
+                        </label>
+                        <div></div>
+                        <div class="form-group">
+                            <div class="col-md-offset-2 col-md-10">
+                                <input type="submit" value="Log in to the system" class="btn btn-default" />
+                            </div>
+                        </div>
+                    </div>
+                }
+                <div>
+                    @Html.ActionLink("Back to List", "Index")
+                </div>
+            </div>
+            <div class="modal-footer">
+                <button type="submit" class="btn btn-primary" form="loginForm"><i class="fas fa-check"></i>Kirjaudu</button>
+                <a href="@Url.Action("Index", "Home")" class="btn btn-primary"><i class="fas fa-times"></i></a>
+            </div>
+        </div>
+    </div>
+</div>
+<div class="jumbotron">
+
+    <h1>Leivo kakkuja!</h1>
+    <p class="lead">Sivultamme löydät reseptejä erilaisten herkku kakkujen tekoon. Meiltä voit myös ostaa tarvittavat tuotteet edulliseen hintaan.</p>
+    <p><a href="/Tuotteet/Index2" class="btn btn-primary btn-lg"><img src="~/Icons/emoji-heart-eyes-fill.svg" />Tuotteet &raquo;</a></p>
+</div>
+
+<div class="row">
+    <div class="col-md-4">
+        <h2>Täydellinen suklaakakku</h2><img src="~/Icons/emoji-heart-eyes-fill.svg" width="32" height="32" title="heart">
+        <p>
+            Tässä ohje täydelliseen suklaakakkuun
+        </p>
+        <p><a class="btn btn-default" href="https://www.anninuunissa.fi/taydellinen-suklaakakku/">resepti &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Maailman paras sitruunakakku</h2>
+        <p>Sitruunasiirapilla kostutettu, ihanan mehevä ja pehmoinen sitruunakakku.</p>
+        <p><a class="btn btn-default" href="https://www.anninuunissa.fi/maailman-paras-sitruunakakku/">resepti &raquo;</a></p>
+    </div>
+    <div class="col-md-4">
+        <h2>Maidoton Mansikkakakku</h2>
+        <p>Maidoton Mansikkakakku on täysin perinteinen, helppo ja turvallinen ohje.</p>
+        <p><a class="btn btn-default" href="https://www.anninuunissa.fi/maidoton-mansikkakakku-g/">resepti &raquo;</a></p>
+    </div>
+</div>

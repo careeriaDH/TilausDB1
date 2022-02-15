@@ -1,0 +1,88 @@
+﻿@model PagedList.IPagedList<TilausDB1.Models.Tuotteet>
+@using PagedList.Mvc;
+<link href="~/Content/PagedList.css" rel="stylesheet" type="text/css" />
+
+@{
+    ViewBag.Title = "Index";
+}
+
+@section scripts {
+    <script type="text/javascript">
+        $("#singleSelectedCategoryID").on("change", function () {
+            var selValue = $("#singleSelectedCategoryID").val();
+            document.getElementById("ProductCategory").value = selValue;
+        });
+    </script>
+}
+
+
+<h2>Index</h2>
+
+<p>
+    @Html.ActionLink("Create New", "Create")
+</p>
+
+@using (Html.BeginForm("Index", "Tuotteet", FormMethod.Get))
+{
+    <div class="input-group">
+        <p class="px-1">@Html.Label("Find by name:")</p>
+        <p class="px-1">@Html.TextBox("SearchString1", ViewBag.currentFilter1 as string, new { @class = "form-control" })</p>
+        <p class="px-1">@Html.Label("Find by Product Category:")</p>
+        <p class="px-1">@Html.Hidden("ProductCategory", ViewBag.currentFilter1 as string, new { @id = "ProductCategory", @class = "form-control" })</p>
+        <p class="px-1">@Html.DropDownList("CategoryID", null, htmlAttributes: new { @id = "singleSelectedCategoryID", @class = "form-control" })</p>
+        <p class="px-1"><input type="submit" value="Search" class="form-control" /></p>
+    </div>
+}
+<div class="container-md mt-3 border">
+    <table class="table-responsive-lg">
+        <tr>
+            <th>@Html.ActionLink("Tuotteen nimi", "Index", new { sortOrder = ViewBag.ProductNameSortParm, currentFilter1 = ViewBag.currentFilter1, currentProductCategory = ViewBag.currentProductCategory })</th>
+            <th>@Html.ActionLink("Ahinta", "Index", new { sortOrder = ViewBag.UnitPriceSortParm, currentFilter1 = ViewBag.currentFilter1, currentProductCategory = ViewBag.currentProductCategory })</th>
+            <th hidden>Kuva</th>
+            <th>KategoriaNimi</th>
+            <th>Nimi</th>
+            <th>Nimi</th>
+            <th></th>
+        </tr>
+
+        @foreach (var item in Model)
+        {
+            <tr>
+                <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Ahinta)</td>
+                <td hidden>@Html.DisplayFor(modelItem => item.Kuva)</td>
+                @*<td>@Html.DisplayFor(modelItem => item.KuvaPath)</td>*@
+                <td>@Html.DisplayFor(modelItem => item.Kategoriat.KategoriaNimi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tuotteet1.Nimi)</td>
+                <td>@Html.DisplayFor(modelItem => item.Tuotteet2.Nimi)</td>
+                <td>
+                    <a class="btn btn-primary" href="~/Tuotteet/Edit/@item.TuoteID">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-pencil-square" viewBox="0 0 16 16">
+                            <path d="M15.502 1.94a.5.5 0 0 1 0 .706L14.459 3.69l-2-2L13.502.646a.5.5 0 0 1 .707 0l1.293 1.293zm-1.75 2.456-2-2L4.939 9.21a.5.5 0 0 0-.121.196l-.805 2.414a.25.25 0 0 0 .316.316l2.414-.805a.5.5 0 0 0 .196-.12l6.813-6.814z" />
+                            <path fill-rule="evenodd" d="M1 13.5A1.5 1.5 0 0 0 2.5 15h11a1.5 1.5 0 0 0 1.5-1.5v-6a.5.5 0 0 0-1 0v6a.5.5 0 0 1-.5.5h-11a.5.5 0 0 1-.5-.5v-11a.5.5 0 0 1 .5-.5H9a.5.5 0 0 0 0-1H2.5A1.5 1.5 0 0 0 1 2.5v11z" />
+                        </svg>
+                    </a>
+                    <a class="btn btn-primary" href="~/Tuotteet/Details/@item.TuoteID">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-info-lg" viewBox="0 0 16 16">
+                            <path d="m9.708 6.075-3.024.379-.108.502.595.108c.387.093.464.232.38.619l-.975 4.577c-.255 1.183.14 1.74 1.067 1.74.72 0 1.554-.332 1.933-.789l.116-.549c-.263.232-.65.325-.905.325-.363 0-.494-.255-.402-.704l1.323-6.208Zm.091-2.755a1.32 1.32 0 1 1-2.64 0 1.32 1.32 0 0 1 2.64 0Z" />
+                        </svg>
+                    </a>
+                    <a class="btn btn-primary" href="~/Tuotteet/Delete/@item.TuoteID">
+                        <svg xmlns="http://www.w3.org/2000/svg" width="16" height="16" fill="currentColor" class="bi bi-trash" viewBox="0 0 16 16">
+                            <path d="M5.5 5.5A.5.5 0 0 1 6 6v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm2.5 0a.5.5 0 0 1 .5.5v6a.5.5 0 0 1-1 0V6a.5.5 0 0 1 .5-.5zm3 .5a.5.5 0 0 0-1 0v6a.5.5 0 0 0 1 0V6z" />
+                            <path fill-rule="evenodd" d="M14.5 3a1 1 0 0 1-1 1H13v9a2 2 0 0 1-2 2H5a2 2 0 0 1-2-2V4h-.5a1 1 0 0 1-1-1V2a1 1 0 0 1 1-1H6a1 1 0 0 1 1-1h2a1 1 0 0 1 1 1h3.5a1 1 0 0 1 1 1v1zM4.118 4 4 4.059V13a1 1 0 0 0 1 1h6a1 1 0 0 0 1-1V4.059L11.882 4H4.118zM2.5 3V2h11v1h-11z" />
+                        </svg>
+                    </a>
+                    @*@Html.ActionLink("Edit", "Edit", new { id = item.TuoteID }) |
+                        @Html.ActionLink("Details", "Details", new { id = item.TuoteID }) |
+                        @Html.ActionLink("Delete", "Delete", new { id = item.TuoteID })*@
+                </td>
+            </tr>
+        }
+
+    </table>
+</div>
+
+<br />
+Page @(Model.PageCount < Model.PageNumber ? 0 : Model.PageNumber) of @Model.PageCount
+@Html.PagedListPager(Model, page => Url.Action("Index", new { page, sortOrder = ViewBag.CurrentSort, currentFilter1 = ViewBag.currentFilter1, currentProductCategory = ViewBag.currentProductCategory }))

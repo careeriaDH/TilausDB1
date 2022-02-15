@@ -1,0 +1,30 @@
+﻿
+@{
+    ViewBag.Title = "Index2";
+}
+    <div class="container-fluid">
+
+        <h2>Tuotteet</h2>
+        <div class="row">
+            @foreach (TilausDB1.Models.Tuotteet item in Model)
+            {
+                <div class="col-lg-3">
+                    <div class="card mb-3">
+                        <h3 class="card-header">    @item.Nimi</h3>
+                        <div class="card-body">
+                            <h5 class="card-title"> €   @item.Ahinta</h5>
+                            <h6 class="card-subtitle text-muted">    @item.TuoteID</h6>
+                        </div>
+                        <img style="height:200px; width:100%; display: block;" src="@item.Kuva" alt="@item.Kuva">
+                        <div class="card-body">
+                            <p class="card-text">Kaikki tuotteemme ovat kotimaisia.</p>
+                        </div>
+                        <div class="card-footer text-muted">
+                            2 days ago
+                        </div>
+                    </div>
+
+                </div>
+            }
+        </div>
+    </div>
