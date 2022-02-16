@@ -34,5 +34,6 @@ namespace TilausDB1.Models
         public virtual DbSet<Tilausrivit> Tilausrivit { get; set; }
         public virtual DbSet<Tuotteet> Tuotteet { get; set; }
         public virtual DbSet<Projektit> Projektit { get; set; }
+        public object ViewModels { get; internal set; }
     }
 }

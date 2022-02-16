@@ -21,7 +21,7 @@ namespace TilausDB1.Models
         }
     
         public int TilausID { get; set; }
-        public Nullable<int> AsiakasID { get; set; }
+        public int AsiakasID { get; set; }
         public string Toimitusosoite { get; set; }
         public string Postinumero { get; set; }
         public Nullable<System.DateTime> Tilauspvm { get; set; }
