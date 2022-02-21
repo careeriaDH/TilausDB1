@@ -1,4 +1,4 @@
-﻿@model IEnumerable<TilausDB1.Models.Tilaukset>
+﻿@model IEnumerable<TilausDB1.ViewModels.TilausTietoData>
 
 @{
     ViewBag.Title = "Index";
@@ -29,29 +29,30 @@
         <th></th>
     </tr>
 
-@foreach (var item in Model) {
-    <tr>
-        <td>
-            @Html.DisplayFor(modelItem => item.Toimitusosoite)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Tilauspvm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Toimituspvm)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Asiakkaat.Nimi)
-        </td>
-        <td>
-            @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
-        </td>
-        <td>
-            @Html.ActionLink("Edit", "Edit", new { id=item.TilausID }) |
-            @Html.ActionLink("Details", "Details", new { id=item.TilausID }) |
-            @Html.ActionLink("Delete", "Delete", new { id=item.TilausID })
-        </td>
-    </tr>
-}
+    @foreach (var item in Model)
+    {
+        <tr>
+            <td>
+                @Html.DisplayFor(modelItem => item.Toimitusosoite)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Tilauspvm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Toimituspvm)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Asiakkaat.Nimi)
+            </td>
+            <td>
+                @Html.DisplayFor(modelItem => item.Postitoimipaikat.Postitoimipaikka)
+            </td>
+            <td>
+                @Html.ActionLink("Edit", "Edit", new { id = item.TilausID }) |
+                @Html.ActionLink("Details", "Details", new { id = item.TilausID }) |
+                @Html.ActionLink("Delete", "Delete", new { id = item.TilausID })
+            </td>
+        </tr>
+    }
 
 </table>

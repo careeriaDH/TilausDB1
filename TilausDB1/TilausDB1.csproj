@@ -134,6 +134,7 @@
     <Compile Include="Controllers\AsiakkaatController.cs" />
     <Compile Include="Controllers\TilauksetController.cs" />
     <Compile Include="Controllers\TilauksetsController.cs" />
+    <Compile Include="Controllers\TilausrivitsController.cs" />
     <Compile Include="Controllers\TuotteetController.cs" />
     <Compile Include="Controllers\HomeController.cs" />
     <Compile Include="Global.asax.cs">
@@ -289,6 +290,11 @@
     <Content Include="Views\Shared\_NavbarLoggedOut.cshtml" />
     <Content Include="Views\Home\_LoginModal.cshtml" />
     <Content Include="Views\Tilauksets\_TilausRivit.cshtml" />
+    <Content Include="Views\Tilausrivits\Create.cshtml" />
+    <Content Include="Views\Tilausrivits\Delete.cshtml" />
+    <Content Include="Views\Tilausrivits\Details.cshtml" />
+    <Content Include="Views\Tilausrivits\Edit.cshtml" />
+    <Content Include="Views\Tilausrivits\Index.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />
