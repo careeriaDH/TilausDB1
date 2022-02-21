@@ -182,6 +182,7 @@
       <DependentUpon>TilausDB.tt</DependentUpon>
     </Compile>
     <Compile Include="Properties\AssemblyInfo.cs" />
+    <Compile Include="ViewModels\TilausRivit.cs" />
     <Compile Include="ViewModels\TilausTietoData.cs" />
     <Compile Include="ViewModels\TilausTietoDataBase.cs" />
   </ItemGroup>
@@ -284,6 +285,10 @@
     <Content Include="Views\Tilauksets\Edit.cshtml" />
     <Content Include="Views\Tilauksets\Index.cshtml" />
     <Content Include="Views\Tilauksets\Tilaussummary.cshtml" />
+    <Content Include="Views\Shared\_NavbarLoggedIn.cshtml" />
+    <Content Include="Views\Shared\_NavbarLoggedOut.cshtml" />
+    <Content Include="Views\Home\_LoginModal.cshtml" />
+    <Content Include="Views\Tilauksets\_TilausRivit.cshtml" />
   </ItemGroup>
   <ItemGroup>
     <Folder Include="App_Data\" />

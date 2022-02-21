@@ -154,5 +154,22 @@ namespace TilausDB1.Controllers
 
             return View(tilausSummary);
         }
+        public ActionResult _TilausRivit(int? orderid)
+        {
+            var tilausRiviList = from t in db.Tilaukset
+                                join tr in db.Tilausrivit on t.TilausID equals tr.TilausID
+                                //where-lause
+                                //orderby-lause
+                                select new TilausRivit
+                                {
+                                    TilausID = t.TilausID,
+                                    AsiakasID = (int)t.AsiakasID,
+                                    Ahinta = tr.Ahinta,
+                                    Postinumero = t.Postinumero,
+
+                                };
+
+            return PartialView(tilausRiviList);
+        }
     }
 }

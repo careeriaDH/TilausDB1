@@ -179,7 +179,7 @@ namespace TilausDB1.Controllers
 
         [HttpPost]
         [ValidateAntiForgeryToken] //Katso https://go.microsoft.com/fwlink/?LinkId=317598
-        public ActionResult Create([Bind(Include = "TuoteID,Nimi,Ahinta,")] Tuotteet tuotteet)
+        public ActionResult Create([Bind(Include = "TuoteID,Nimi,Ahinta,Kategoria")] Tuotteet tuotteet)
         {
             if (ModelState.IsValid)
             {
