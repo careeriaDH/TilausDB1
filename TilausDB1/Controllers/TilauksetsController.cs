@@ -154,5 +154,25 @@ namespace TilausDB1.Controllers
 
             return View(tilausSummary);
         }
+
+        public ActionResult _TilausRivit(int? orderid)
+        {
+            var tilausRiviList = from tr in db.Tilausrivit
+                                join t in db.Tuotteet on tr.TuoteID equals t.TuoteID
+                                 //join k in db.Kategoriat on t.KategoriaId equals k.KategoriaId
+                                where tr.TilausID == orderid
+                                //orderby-lause
+                                select new TilausRivit
+                                {
+                                    TilausID = (int)tr.TilausID,
+                                    TuoteID = t.TuoteID,
+                                    Ahinta = t.Ahinta,
+                                    Nimi = t.Nimi,
+                                    Kategoria = t.Kategoria,
+
+                                };
+
+            return PartialView(tilausRiviList);
+        }
     }
 }

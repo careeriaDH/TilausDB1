@@ -8,8 +8,14 @@
     <script type="text/javascript">
         $(function () {
             $(".showTilausLuokka").click(function () {
-                let TilausID = $(this).data("orderid");
-                //alert("Klikkasit tilausnumeroa: " + TilausID);
+                let tilausID = $(this).data("orderid");
+                //alert("Klikkasit tilausnumeroa: " + tilausID);
+                var url = "/Tilauksets/_TilausRivit/?TilausID=" + tilausID;
+                $("#orderDetails_" + tilausID).append("<b>Ladataan tilauksen " + tilausID + " rivejä...</b>");
+                var $detailDiv = $("orderDetails_" + tilausID);
+                $.get(url, function (data) {
+                    $detailDiv.replaceWith(data);
+                });
             });
         });
     </script>
@@ -63,8 +69,7 @@
                 </div>
                 <div id="collapse_@item.TilausID" class="collapse" data-bs-parent="#accordion">
                     <div class="card-body">
-                        <p>Ladataan tilauksen @item.TilausID rivit</p>
-                        @*<div id="orderDetails_@item.TilausID"></div>*@
+                        <div id="orderDetails_@item.TilausID"></div>
                     </div>
                 </div>
             </div>
