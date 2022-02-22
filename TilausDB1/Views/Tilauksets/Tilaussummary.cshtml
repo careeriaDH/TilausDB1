@@ -18,6 +18,22 @@
 <h2>Tilaushistoria</h2>
 
 <div class="container-fluid">
+    <div class="card-header">
+        <a class="card-link">
+            <form>
+                <div class="input-group">
+                    <div class="input-group-prepend">
+                        <span class="input-group-text bg-warning font-weight-bold">Tilaus</span>
+                    </div>
+                    @*<input type="text" class="form-control bg-warning font-weight-bold px-2" value="Tilaus ID" disabled>*@
+                    <input type="text" class="form-control bg-warning font-weight-bold px-2" value="Asiakas ID" disabled>
+                    <input type="text" class="form-control bg-warning font-weight-bold px-2" value="Toimitusosoite" disabled>
+                    <input type="text" class="form-control bg-warning font-weight-bold px-2" value="Tilaus päivämäärä" disabled>
+                    <input type="text" class="form-control bg-warning font-weight-bold px-2" value="Toimitus päivämäärä" disabled>
+                </div>
+            </form>
+        </a>
+    </div>
     <div id="accordion">
         @foreach (var item in Model)
         {
@@ -29,13 +45,15 @@
                                 <div class="input-group-prepend">
                                     <span class="input-group-text"> @item.TilausID</span>
                                 </div>
-                                @*<input type="text" class="form-control px-2" value="@item.Asiakkaat.AsiakasID" disabled />
-                                <input type="text" class="form-control px-2" value="@item.Asiakkaat.Osoite" disabled />
-                                <input type="text" class="form-control px-2" value="@item.Asiakkaat.Postinumero" disabled />
-                                <input type="text" class="form-control px-2" value="@item.Asiakkaat.Vastuumyyja" disabled />
-                                <input type="text" class="form-control px-2" value="@item.Asiakkaat.Luottoraja" disabled />
-                                <input type="text" class="form-control px-2" value="@item.Asiakkaat.Websivusto" disabled />*@
-                                <input type="text" class="form-control px-2" value="@item.TilausID" disabled />
+
+                                @*<input type="text" class="form-control px-2" value="@item.Asiakkaat.Osoite" disabled />
+        <input type="text" class="form-control px-2" value="@item.Asiakkaat.Postinumero" disabled />
+        <input type="text" class="form-control px-2" value="@item.Asiakkaat.Vastuumyyja" disabled />
+        <input type="text" class="form-control px-2" value="@item.Asiakkaat.Luottoraja" disabled />
+        <input type="text" class="form-control px-2" value="@item.Asiakkaat.Websivusto" disabled />*@
+
+                                @*<input type="text" class="form-control px-2" value="@item.TilausID" disabled />*@
+                                <input type="text" class="form-control px-2" value="@item.AsiakasID" disabled />
                                 <input type="text" class="form-control px-2" value="@item.Toimitusosoite" disabled />
                                 <input type="text" class="form-control px-2" value="@item.Tilauspvm" disabled />
                                 <input type="text" class="form-control px-2" value="@item.Toimituspvm" disabled />
