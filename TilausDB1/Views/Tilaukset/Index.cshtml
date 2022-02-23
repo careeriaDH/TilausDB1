@@ -1,17 +1,43 @@
 ﻿@model IEnumerable<TilausDB1.Models.Tilaukset>
+<link rel="stylesheet" href="https://use.fontawesome.com/releases/v5.7.0/css/all.css"
+      integrity="sha384-lZN37f5QGtY3VHgisS14W3ExzMWZxybE1SJSEsQp9S+oqd12jhcu+A56Ebc1zFSJ"
+      crossorigin="anonymous">
 
 
 @{
     ViewBag.Title = "Index";
 }
 
+@section scripts {
+    <script type="text/javascript">
+        $(function () {
+            $(".getOrderId").click(function () {
+                let orderId = $(this).data("orderid");
+                console.log("Klikkasit tilausnumeroa: " + orderId);
+                var url = "/Tilaukset/_ModalEdit/?id=" + orderId;
+                console.log(url);
+
+                $("#orderEdit").append(" <b>Avataan tilauksen " + orderId + " muokkausikkuna...</b>");
+
+                var $detailDivEdit = $("#orderEdit");
+                $.get(url, function (data) {
+                    $detailDivEdit.replaceWith(data);
+                    $('#ModalOrderEdit').modal('show');
+                });
+            });
+        });
+    </script>
+    }
+
 <h2>Index</h2>
 
 <p>
     @Html.ActionLink("Create New", "Create")
 </p>
+<div id="orderEdit"></div>
 <table class="table">
     <tr>
+        <th>Muokkaa</th>
         <th>@Html.DisplayNameFor(model => model.Toimitusosoite)</th>
         <th>@Html.DisplayNameFor(model => model.Tilauspvm)</th>
         <th>@Html.DisplayNameFor(model => model.Toimituspvm)</th>
@@ -23,6 +49,7 @@
     @foreach (var item in Model)
     {
         <tr>
+            <td><button class="getOrderId fas fa-edit" data-orderid="@item.TilausID"></button></td>
             <td>@Html.DisplayFor(modelItem => item.Toimitusosoite)</td>
             <td>@Html.DisplayFor(modelItem => item.Tilauspvm)</td>
             <td>@Html.DisplayFor(modelItem => item.Toimituspvm)</td>

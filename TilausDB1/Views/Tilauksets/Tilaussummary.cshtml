@@ -13,6 +13,8 @@
                 var url = "/Tilauksets/_TilausRivit/?TilausID=" + tilausID;
                 $("#orderDetails_" + tilausID).append("<b>Ladataan tilauksen " + tilausID + " rivejä...</b>");
                 var $detailDiv = $("orderDetails_" + tilausID);
+                console.log(url);
+                console.log($detailDiv);
                 $.get(url, function (data) {
                     $detailDiv.replaceWith(data);
                 });

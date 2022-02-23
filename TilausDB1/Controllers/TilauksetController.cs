@@ -52,6 +52,32 @@ public class TilauksetController : Controller
             }
             return View(tilaukset);
         }
+        public ActionResult _ModalEdit(int? id)
+        {
+            if (id == null) return new HttpStatusCodeResult(HttpStatusCode.BadRequest);
+            var model = db.Tilaukset.Include(t => t.Asiakkaat).Include(t => t.Postitoimipaikat);
+            Tilaukset tilaukset = db.Tilaukset.Find(id);
+            if (tilaukset == null) return HttpNotFound();
+            ViewBag.AsiakasID = new SelectList(db.Tilaukset, "AsiakasID", "Postinumero", selectedValue: "AsiakasID");
+            ViewBag.Postinumero = new SelectList(db.Tilaukset, "AsiakasID", "Postinumero", selectedValue: "Postinumero");
+            return PartialView("_ModalEdit", tilaukset);
+        }
+        [HttpPost]
+        [ValidateAntiForgeryToken] //Katso https://go.microsoft.com/fwlink/?LinkId=317598
+        public ActionResult _ModalEdit([Bind(Include = "TilausID,AsiakasID,Toimitusosoite,Tilauspvm,Toimituspvm,Nimi,Postitoimipaikka")] Tilaukset tilaukset)
+        {
+            if (ModelState.IsValid)
+            {
+                db.Entry(tilaukset).State = EntityState.Modified;
+                db.SaveChanges();
+                return RedirectToAction("Index");
+            }
+            return PartialView("_ModalEdit", tilaukset);
+        }
+
+
+
+
         public ActionResult Create()
         {
             ViewBag.AsiakasID = new SelectList(db.Asiakkaat,  "AsiakasID", "Nimi");
