@@ -3,14 +3,15 @@
 @*<p>
     @Html.ActionLink("Create New", "Create")
 </p>*@
-<table class="table-striped">
+<table class="table table-striped">
     <thead>
         <tr>
             <th>@Html.DisplayNameFor(model => model.TilausID)</th>
             <th>@Html.DisplayNameFor(model => model.TuoteID)</th>
             <th>@Html.DisplayNameFor(model => model.Nimi)</th>
             <th>@Html.DisplayNameFor(model => model.Ahinta)</th>
-            <th>@Html.DisplayNameFor(model => model.Kategoria)</th>
+            <th>@Html.DisplayNameFor(model => model.Maara)</th>
+            <th>@Html.DisplayNameFor(model => model.KategoriaNimi)</th>
             @*<th>@Html.DisplayNameFor(model => model.KategoriaId)</th>*@
             @*<th>@Html.DisplayNameFor(model => model.KategoriaNimi)</th>*@
             <th></th>
@@ -24,15 +25,9 @@
                 <td>@Html.DisplayFor(modelItem => item.TuoteID)</td>
                 <td>@Html.DisplayFor(modelItem => item.Nimi)</td>
                 <td>@Html.DisplayFor(modelItem => item.Ahinta)</td>
-                <td>@Html.DisplayFor(modelItem => item.Kategoria)</td>
-                @*<td>@Html.DisplayFor(modelItem => item.KategoriaId)</td>*@
-                @*<td>@Html.DisplayFor(modelItem => item.KategoriaNimi)</td>*@
-                <td>
-                    @*@Html.ActionLink("Edit", "Edit", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Details", "Details", new { /* id=item.PrimaryKey */ }) |
-                @Html.ActionLink("Delete", "Delete", new { /* id=item.PrimaryKey */ })*@
-            </td>
-        </tr>
-    }
+                <td>@Html.DisplayFor(modelItem => item.Maara)</td>
+                <td>@Html.DisplayFor(modelItem => item.KategoriaNimi)</td>
+            </tr>
+        }
     </tbody>
 </table>

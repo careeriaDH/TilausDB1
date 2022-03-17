@@ -1,9 +1,14 @@
 ﻿namespace TilausDB1.ViewModels
 {
     using System;
+    using System.ComponentModel.DataAnnotations;
 
     public class TilausRivit
     {
+        [Key]
+        public int TilausriviId { get; set; }
+
+        public int Maara { get; set; }
         public int TilausID { get; set; }
         public int TuoteID { get; set; }
 
@@ -16,6 +21,8 @@
         //public TilausRivit(int kategoriaId) => KategoriaId = kategoriaId;
 
         public string KategoriaNimi { get; set; }
+
+
 
     }
 }

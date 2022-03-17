@@ -164,11 +164,12 @@ namespace TilausDB1.Controllers
                                 //orderby-lause
                                 select new TilausRivit
                                 {
-                                    TilausID = (int)tr.TilausID,
-                                    TuoteID = t.TuoteID,
-                                    Ahinta = t.Ahinta,
+                                    TilausID = tr.TilausriviID,
+                                    TuoteID = (int)t.TuoteID,
+                                    Ahinta = (decimal)t.Ahinta,
                                     Nimi = t.Nimi,
                                     Kategoria = t.Kategoria,
+                                    Maara = (int)tr.Maara
 
                                 };
 

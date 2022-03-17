@@ -8,11 +8,11 @@
     <script type="text/javascript">
         $(function () {
             $(".showTilausLuokka").click(function () {
-                let tilausID = $(this).data("orderid");
+                let tilausID = $(this).data("tilausid");
                 //alert("Klikkasit tilausnumeroa: " + tilausID);
                 var url = "/Tilauksets/_TilausRivit/?TilausID=" + tilausID;
                 $("#orderDetails_" + tilausID).append("<b>Ladataan tilauksen " + tilausID + " rivejä...</b>");
-                var $detailDiv = $("orderDetails_" + tilausID);
+                var $detailDiv = $("#orderDetails_" + tilausID);
                 console.log(url);
                 console.log($detailDiv);
                 $.get(url, function (data) {
@@ -47,7 +47,7 @@
         {
             <div class="card">
                 <div class="card-header">
-                    <a class="card-link showTilausLuokka" data-orderid="@item.TilausID" data-bs-toggle="collapse" href="#collapse_@item.TilausID">
+                    <a class="card-link showTilausLuokka" data-tilausid="@item.TilausID" data-bs-toggle="collapse" href="#collapse_@item.TilausID">
                         <form>
                             <div class="input-group">
                                 <div class="input-group-prepend">
